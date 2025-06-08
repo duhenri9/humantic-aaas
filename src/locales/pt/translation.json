@@ -71,8 +71,37 @@
     "signatureReqError": "Falha ao enviar para assinatura:",
     "signatureStatusTitle": "Status da Assinatura"
   },
+  "payment": {
+    "titleEntrada": "Complete seu Pagamento Inicial",
+    "descriptionEntrada": "Para ativar seu agente HumanTic e acessar todas as funcionalidades da plataforma, por favor, complete o pagamento inicial de configuração. Você será redirecionado para o Stripe para processamento seguro.",
+    "payWithStripeButton": "Pagar com Stripe",
+    "secureRedirect": "Você será redirecionado para o checkout seguro do Stripe.",
+    "initiatingPayment": "Iniciando pagamento...",
+    "redirectingToStripe": "Redirecionando para o Stripe...",
+    "errorRedirectingToStripe": "Erro ao redirecionar para o Stripe",
+    "errorPaymentFailed": "Falha ao iniciar pagamento",
+    "errorNoSessionId": "Não foi possível recuperar a sessão de pagamento.",
+    "errorStripeJsNotLoaded": "Stripe.js não carregado.",
+    "errorStripeKeyNotSet": "Os pagamentos com Stripe não estão configurados corretamente pelo administrador do site.",
+    "errorConfigTitle": "Erro no Sistema de Pagamento",
+    "errorCannotInitiate": "Não é possível iniciar o pagamento. Configuração ausente ou usuário não logado.",
+    "errorPriceIdNotSet": "Item de pagamento não configurado. Por favor, contate o suporte.",
+    "errorPriceIdNotSetDevelopment": "Nota: O item de pagamento não está totalmente configurado (usando ID de Preço placeholder). Isso pode não funcionar corretamente.",
+    "errorStripeGeneric": "Ocorreu um erro com o Stripe.",
+    "successTitle": "Pagamento Bem-sucedido!",
+    "successMessage": "Obrigado pelo seu pagamento. Sua transação foi concluída com sucesso. Você deve receber um email de confirmação em breve. Agora você pode acessar seu agente e as funcionalidades do painel.",
+    "successToast": "Pagamento confirmado! Obrigado.",
+    "goToDashboardButton": "Ir para o Painel",
+    "sessionIdLabel": "ID da Sessão",
+    "cancelTitle": "Pagamento Cancelado",
+    "cancelMessage": "Seu processo de pagamento foi cancelado. Nenhuma cobrança foi realizada. Se você encontrou algum problema ou deseja tentar novamente, pode retornar à página de pagamento.",
+    "tryAgainButton": "Tentar Pagamento Novamente",
+    "backToDashboardButton": "Voltar para o Painel"
+  },
   "clientJourney": {
     "title": "Sua Jornada de Onboarding",
+    "demoPrevButton": "Passo Anterior (Demo)",
+    "demoNextButton": "Próximo Passo (Demo)",
     "step1_title": "Pré-Onboarding",
     "step1_desc": "Escolha seu plano e preencha o formulário inicial.",
     "step2_title": "Proposta e Contrato",
@@ -119,7 +148,8 @@
      "metricCommonQueries": "Consultas Mais Comuns",
      "feedbackExamplePositive": "Usuário reportou resolução com sucesso.",
      "feedbackExampleNeutral": "Pergunta sobre funcionalidade X.",
-     "feedbackExampleAction": "Usuário preso na etapa de pagamento."
+     "feedbackExampleAction": "Usuário preso na etapa de pagamento.",
+     "defaultUserName": "Usuário"
   },
    "fileUpload": {
      "dropzoneDragActive": "Solte o arquivo aqui...",

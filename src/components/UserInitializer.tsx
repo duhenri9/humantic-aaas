@@ -16,6 +16,10 @@ export interface UserData { // Exporting for potential use elsewhere, e.g. if cu
   name?: string | undefined;
   tokenIdentifier: string;
   isOnboardingWorkflowTriggered?: boolean | undefined;
+  stripeCustomerId?: string | undefined;
+  stripePaymentStatus?: string | undefined;
+  lastStripeCheckoutSessionId?: string | undefined;
+  journeyStep_Payment_Completed?: boolean | undefined;
 }
 
 const UserInitializer = () => {

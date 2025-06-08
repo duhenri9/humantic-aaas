@@ -71,8 +71,37 @@
     "signatureReqError": "Failed to send for signature:",
     "signatureStatusTitle": "Signature Status"
   },
+  "payment": {
+    "titleEntrada": "Complete Your Initial Payment",
+    "descriptionEntrada": "To activate your HumanTic agent and access all platform features, please complete the initial setup payment. You will be redirected to Stripe for secure processing.",
+    "payWithStripeButton": "Pay with Stripe",
+    "secureRedirect": "You will be redirected to Stripe's secure checkout.",
+    "initiatingPayment": "Initiating payment...",
+    "redirectingToStripe": "Redirecting to Stripe...",
+    "errorRedirectingToStripe": "Error redirecting to Stripe",
+    "errorPaymentFailed": "Payment initiation failed",
+    "errorNoSessionId": "Could not retrieve payment session.",
+    "errorStripeJsNotLoaded": "Stripe.js not loaded.",
+    "errorStripeKeyNotSet": "Stripe payments are not configured correctly by the site administrator.",
+    "errorConfigTitle": "Payment System Error",
+    "errorCannotInitiate": "Cannot initiate payment. Configuration missing or user not logged in.",
+    "errorPriceIdNotSet": "Payment item is not configured. Please contact support.",
+    "errorPriceIdNotSetDevelopment": "Note: The payment item is not fully configured (using placeholder Price ID). This may not function correctly.",
+    "errorStripeGeneric": "An error occurred with Stripe.",
+    "successTitle": "Payment Successful!",
+    "successMessage": "Thank you for your payment. Your transaction has been completed successfully. You should receive a confirmation email shortly. You can now access your agent and dashboard features.",
+    "successToast": "Payment confirmed! Thank you.",
+    "goToDashboardButton": "Go to Dashboard",
+    "sessionIdLabel": "Session ID",
+    "cancelTitle": "Payment Cancelled",
+    "cancelMessage": "Your payment process was cancelled. You have not been charged. If you encountered any issues or wish to try again, you can return to the payment page.",
+    "tryAgainButton": "Try Payment Again",
+    "backToDashboardButton": "Back to Dashboard"
+  },
   "clientJourney": {
     "title": "Your Onboarding Journey",
+    "demoPrevButton": "Previous Step (Demo)",
+    "demoNextButton": "Next Step (Demo)",
     "step1_title": "Pre-Onboarding",
     "step1_desc": "Choose your plan and fill out the initial form.",
     "step2_title": "Proposal & Contract",
@@ -119,7 +148,8 @@
      "metricCommonQueries": "Most Common Queries",
      "feedbackExamplePositive": "User reported successful resolution.",
      "feedbackExampleNeutral": "Inquiry about feature X.",
-     "feedbackExampleAction": "User stuck at payment step."
+     "feedbackExampleAction": "User stuck at payment step.",
+     "defaultUserName": "User"
   },
   "fileUpload": {
      "dropzoneDragActive": "Drop the file here...",

@@ -9,11 +9,12 @@ import { Link } from 'react-router-dom';
 import { BarChart3, UserCheck, TrendingUp, Settings2, LayoutGrid, CheckSquare, MessageCircleWarning, ExternalLink, Loader2 } from 'lucide-react'; // Added Loader2
 
 const DashboardPage = () => {
-  const { t, i18n } = useTranslation(); // Ensure i18n is available if needed for formatting
+   const { t, i18n } = useTranslation();
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth();
+   const currentUser = useQuery(api.auth.getCurrentUser) as UserData | null; // Fetch current user data
 
   // Simulating user's name - in a real app, this would come from user data (e.g., useQuery(api.auth.getCurrentUser))
-  const mockUserName = "Usuário HumanTic"; // Placeholder name
+   const userName = currentUser?.name || currentUser?.email || t('dashboard.defaultUserName', "User"); // Use real data if available
 
   if (authLoading) {
     return <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-gray-700">
@@ -38,24 +39,26 @@ const DashboardPage = () => {
    );
   }
 
-  // Mock data for the dashboard sections
+   // Mock data for the dashboard sections - can be gradually replaced by currentUser data
   const dashboardStats = {
-    totalFiles: 138,
-    activeAgents: 2,
-    spaceUsed: "2.7 GB",
-    mcpAgentStatus: "active",
-    configProgressPercent: 85,
-    feedbackItems: [
+     totalFiles: currentUser?.filesCount || 138, // Example: if filesCount was on UserData
+     activeAgents: currentUser?.activeAgentsCount || 2, // Example
+     spaceUsed: currentUser?.spaceUsedFormatted || "2.7 GB",
+     mcpAgentStatus: currentUser?.mcpAgentStatus || "active",
+     configProgressPercent: currentUser?.configProgress || 85,
+     feedbackItems: [ // This would likely come from a separate query
       { id: 1, type: "positive", textKey: "dashboard.feedbackExamplePositive", channel: "WhatsApp", time: "2 hours ago" },
       { id: 2, type: "neutral", textKey: "dashboard.feedbackExampleNeutral", channel: "Website Chat", time: "1 day ago" },
       { id: 3, type: "action_needed", textKey: "dashboard.feedbackExampleAction", channel: "CRM", time: "3 days ago" },
     ],
-    performanceIndicators: {
+     performanceIndicators: { // This also from separate queries or aggregated data
       engagementRate: "75%",
       leadsGenerated: 15,
       commonQueries: ["Preço", "Funcionalidades", "Suporte"]
     }
   };
+
+   const paymentStepCompleted = currentUser?.journeyStep_Payment_Completed === true || currentUser?.stripePaymentStatus === 'paid';
 
   const getAgentStatusPill = (status: string) => {
      switch (status) {
@@ -80,11 +83,11 @@ const DashboardPage = () => {
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">
-          {t('dashboard.greeting', { userName: mockUserName })}
+           {t('dashboard.greeting', { userName: userName })}
         </h1>
         <p className="text-gray-600 mb-8">{t('dashboard.welcomeSubtitle', "Here's what's happening with your account today.")}</p>
 
-        <ClientJourneyStepper />
+         <ClientJourneyStepper paymentCompleted={paymentStepCompleted} />
 
         {/* Statistics Section */}
         <section className="mb-8">

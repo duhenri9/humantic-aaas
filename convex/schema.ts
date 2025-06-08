@@ -8,8 +8,13 @@ export default defineSchema({
     name: v.optional(v.string()),
     email: v.string(),
     tokenIdentifier: v.string(),
-       isOnboardingWorkflowTriggered: v.optional(v.boolean()), // New field
-  }).index("by_token", ["tokenIdentifier"]),
+       isOnboardingWorkflowTriggered: v.optional(v.boolean()),
+       stripeCustomerId: v.optional(v.string()), // To store Stripe Customer ID
+       stripePaymentStatus: v.optional(v.string()), // e.g., 'unpaid', 'paid', 'pending_webhook'
+       lastStripeCheckoutSessionId: v.optional(v.string()),
+       journeyStep_Payment_Completed: v.optional(v.boolean()), // New field for step 3
+     }).index("by_token", ["tokenIdentifier"])
+       .index("by_stripe_customer_id", ["stripeCustomerId"]), // If you create Stripe customers
 
   files: defineTable({
     name: v.string(),

@@ -12,7 +12,10 @@ import NotFoundPage from './pages/NotFoundPage';
 import AuthButtons from './components/AuthButtons';
 import ProtectedRoute from './components/ProtectedRoute';
 import HumanTicLogo from './components/HumanTicLogo';
-import CreateProposalPage from './pages/CreateProposalPage'; // Adjust path
+import CreateProposalPage from './pages/CreateProposalPage';
+import PaymentPage from './pages/PaymentPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage'; // Adjust path
+import PaymentCancelPage from './pages/PaymentCancelPage';   // Adjust path
 
 function App() {
   const { i18n, t } = useTranslation();
@@ -90,6 +93,12 @@ function App() {
                path="/proposals/create"
                element={<ProtectedRoute><CreateProposalPage /></ProtectedRoute>}
              />
+             <Route
+               path="/payment/initiate"
+               element={<ProtectedRoute><PaymentPage /></ProtectedRoute>}
+             />
+             <Route path="/payment/success" element={<PaymentSuccessPage />} />
+             <Route path="/payment/cancel" element={<PaymentCancelPage />} />
           <Route
             path="/dashboard/visitor"
             element={
