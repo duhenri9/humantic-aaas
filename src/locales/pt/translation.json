@@ -26,7 +26,9 @@
      "initiatingOnboarding": "Iniciando processo de onboarding...",
      "onboardingStartedSuccess": "Processo de onboarding iniciado!",
      "onboardingError": "Falha no processo de onboarding",
-     "registrationError": "Falha no registro"
+     "registrationError": "Falha no registro",
+     "errorStoringUser": "Não foi possível iniciar a sessão do usuário. Por favor, tente atualizar.",
+     "redirectingToDashboard": "Redirecionando para o painel..."
   },
   "clientJourney": {
     "title": "Sua Jornada de Onboarding",

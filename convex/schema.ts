@@ -8,6 +8,7 @@ export default defineSchema({
     name: v.optional(v.string()),
     email: v.string(),
     tokenIdentifier: v.string(),
+       isOnboardingWorkflowTriggered: v.optional(v.boolean()), // New field
   }).index("by_token", ["tokenIdentifier"]),
 
   files: defineTable({

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Toaster } from 'react-hot-toast'; // Import Toaster
+import UserInitializer from './components/UserInitializer'; // Adjust path as needed
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -58,6 +59,7 @@ function App() {
           },
         }}
       />
+      <UserInitializer /> {/* Call UserInitializer here, early in the app lifecycle */}
 
       <header className="p-4 bg-white border-b border-gray-200 flex justify-between items-center shadow-sm sticky top-0 z-50">
         <Link to="/" className="flex items-center"> {/* Ensure link wraps logo for clickability */}

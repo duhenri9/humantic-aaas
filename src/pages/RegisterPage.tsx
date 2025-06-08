@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 // import { useConvexAuth, useMutation } from 'convex/react'; // Example if using Convex auth hooks directly
 // import { api } from '../../convex/_generated/api'; // Example
 import toast from 'react-hot-toast';
-import { triggerOnboardingWorkflow } from '../../services/n8nService'; // Adjust path as needed
+// import { triggerOnboardingWorkflow } from '../../services/n8nService'; // No longer called directly
 import { ConvexUserId } from '../../types'; // Assuming types.ts is in src/
 
 const RegisterPage = () => {
@@ -30,38 +30,23 @@ const RegisterPage = () => {
       // --- Simulate Sign Up and User Creation ---
       // This is where you would call your actual Convex sign-up mutation/action.
       // For example: const result = await signUpMutation({ email, password });
-      // const newUserId = result?.userId; // Assuming your mutation returns the new user's ID
+      // const newUserId = result?.userId;
       // const newUserEmail = email;
 
       // SIMULATION for this subtask:
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-      const newUserId: ConvexUserId | string = "user_" + Date.now(); // Simulated User ID
-      const newUserEmail = email;
-      // In a real scenario, ensure newUserId is of type ConvexUserId if that's what your system uses.
+      // This part now only needs to ensure that the Convex authentication provider
+      // successfully creates the user. The UserInitializer will handle `storeUser`
+      // and the subsequent n8n trigger.
+      console.log("[RegisterPage] Simulating sign-up process for:", email);
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay for auth provider
 
-      if (!newUserId) { // Check if user creation was successful based on your mutation's response
-        throw new Error(t('auth.registrationError', 'User creation failed.'));
-      }
-      toast.success(t('auth.accountCreatedSuccess', 'Account created successfully!'), { id: toastId });
-
-      // --- Trigger n8n Onboarding ---
-      try {
-        toast.loading(t('auth.initiatingOnboarding', 'Initiating onboarding process...'), { id: 'onboardingToast' });
-        await triggerOnboardingWorkflow({
-          userId: newUserId as string, // Cast if ConvexUserId is not directly string assignable for the service
-          email: newUserEmail,
-          timestamp: new Date().toISOString(),
-          // planId: "default_plan" // Example if you have a default plan
-        });
-        toast.success(t('auth.onboardingStartedSuccess', 'Onboarding process started!'), { id: 'onboardingToast' });
-      } catch (n8nError: any) {
-        console.error("[RegisterPage] n8n onboarding trigger failed:", n8nError);
-        toast.error(`${t('auth.onboardingError', 'Onboarding process failed')}: ${n8nError.message}`, { id: 'onboardingToast', duration: 7000 });
-      }
+      // After simulated success, Convex Auth state would change, UserInitializer would run.
+      // No direct n8n call here anymore.
+      toast.success(t('auth.accountCreatedSuccess', 'Account created successfully!') + " " + t('auth.redirectingToDashboard', 'Redirecting to dashboard...'), { id: toastId });
 
       navigate('/dashboard');
     } catch (error: any) {
-      console.error("[RegisterPage] Registration failed:", error);
+      console.error("[RegisterPage] Registration or simulated auth process failed:", error);
       toast.error(`${t('auth.registrationError', 'Registration failed')}: ${error.message}`, { id: toastId, duration: 7000 });
     } finally {
       setIsLoading(false);

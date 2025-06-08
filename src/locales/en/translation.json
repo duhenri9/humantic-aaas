@@ -26,7 +26,9 @@
      "initiatingOnboarding": "Initiating onboarding process...",
      "onboardingStartedSuccess": "Onboarding process started!",
      "onboardingError": "Onboarding process failed",
-     "registrationError": "Registration failed"
+     "registrationError": "Registration failed",
+     "errorStoringUser": "Could not initialize user session. Please try refreshing.",
+     "redirectingToDashboard": "Redirecting to dashboard..."
   },
   "clientJourney": {
     "title": "Your Onboarding Journey",
