@@ -6,9 +6,10 @@ import { generateProposalPdf } from '../../services/n8nService'; // Adjust path 
 import { sendForSignature } from '../../services/signatureService'; // Adjust path
 import type { ProposalFormData } from '../../types'; // Adjust path if needed
 import { Mail, AlertTriangle, CheckCircle } from 'lucide-react'; // Add icons
-  clientEmail: string;
-  projectName: string;
-  scope: string;
+import { logAuditEvent } from '../../services/supabaseService'; // Adjust path
+import { useQuery } from 'convex/react'; // To get current user for logging
+import { api as userApi } from '../../convex/_generated/api'; // Alias for user api
+import type { UserData } from '../../components/UserInitializer'; // Or from types.ts
   price: string; // Using string for input, can be number later
   currency: string;
   paymentTerms: string;
@@ -17,6 +18,7 @@ import { Mail, AlertTriangle, CheckCircle } from 'lucide-react'; // Add icons
 
 const CreateProposalPage = () => {
   const { t } = useTranslation();
+  const currentUser = useQuery(userApi.auth.getCurrentUser) as UserData | null;
   const [formData, setFormData] = useState<ProposalFormData>({
     clientName: '',
     clientEmail: '',
@@ -53,6 +55,12 @@ const CreateProposalPage = () => {
       if (result.pdfUrl) {
         toast.success(t('proposalForm.generateSuccess', 'Proposal generated successfully!'), { id: toastId });
         setGeneratedPdfUrl(result.pdfUrl);
+        // Log proposal generation event
+        logAuditEvent('PROPOSAL_GENERATED',
+          { clientName: formData.clientName, projectName: formData.projectName, pdfUrl: result.pdfUrl },
+          currentUser?._id as string
+        ).then(() => console.log('[CreateProposalPage] PROPOSAL_GENERATED event logged to Supabase.'))
+          .catch(err => console.error('[CreateProposalPage] Supabase logging error for PROPOSAL_GENERATED:', err));
       } else {
         throw new Error(result.error || t('proposalForm.generateErrorUnknown', 'Unknown error generating PDF.'));
       }
@@ -83,6 +91,12 @@ const CreateProposalPage = () => {
       if (result.signatureRequestId) {
         toast.success(t('proposalForm.sendForSignatureSuccess', 'Proposal sent for signature!'), { id: toastId });
         setSignatureInfo({ id: result.signatureRequestId, status: result.status || 'pending_simulation' });
+        // Log signature request event
+        logAuditEvent('SIGNATURE_REQUESTED',
+          { clientEmail: formData.clientEmail, pdfUrl: generatedPdfUrl, signatureRequestId: result.signatureRequestId },
+          currentUser?._id as string
+        ).then(() => console.log('[CreateProposalPage] SIGNATURE_REQUESTED event logged to Supabase.'))
+          .catch(err => console.error('[CreateProposalPage] Supabase logging error for SIGNATURE_REQUESTED:', err));
       } else {
         const errorMessage = result.error || t('proposalForm.sendForSignatureErrorUnknown', 'Unknown error sending for signature.');
         throw new Error(errorMessage);

@@ -1,10 +1,13 @@
 // src/components/FileUpload.tsx
 import React, { useState, useCallback } from 'react';
-import { useMutation } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react'; // Added useQuery
 import { api } from '../../convex/_generated/api'; // Adjust path as needed
+import { api as userApi } from '../../convex/_generated/api'; // Alias for user api for clarity if needed, or just use api.auth.getCurrentUser
 import { UploadCloud, File as FileIcon, X } from 'lucide-react'; // Icons
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { logAuditEvent } from '../../services/supabaseService'; // Adjust path
+import type { UserData } from './UserInitializer'; // Or from types.ts, assuming UserInitializer exports it
 
 const ALLOWED_MIME_TYPES = [
   'application/pdf',
@@ -23,6 +26,7 @@ const FileUpload = () => {
   // const [error, setError] = useState<string | null>(null); // Replaced by toasts
   const [dragActive, setDragActive] = useState<boolean>(false);
   const { t } = useTranslation();
+  const currentUser = useQuery(userApi.auth.getCurrentUser) as UserData | null; // Get current user
 
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const saveFileMetadata = useMutation(api.files.saveFile);
@@ -90,22 +94,25 @@ const FileUpload = () => {
 
       const { storageId } = await result.json();
 
-      await saveFileMetadata({
-        storageId,
-        name: selectedFile.name,
-        type: selectedFile.type,
-        size: selectedFile.size,
-      });
+      const savedFileDetails = { storageId, name: selectedFile!.name, type: selectedFile!.type, size: selectedFile!.size };
+      await saveFileMetadata(savedFileDetails);
 
-      setUploadProgress(100); // Simulate progress end
+      setUploadProgress(100);
       setSelectedFile(null);
       toast.success(t('fileUpload.successUpload'));
+
+      // Log file upload event
+      logAuditEvent('FILE_UPLOADED',
+        { fileName: savedFileDetails.name, fileType: savedFileDetails.type, fileSize: savedFileDetails.size, storageId: savedFileDetails.storageId },
+        currentUser?._id as string
+      ).then(() => console.log('[FileUpload] FILE_UPLOADED event logged to Supabase.'))
+        .catch(err => console.error('[FileUpload] Supabase logging error for FILE_UPLOADED:', err));
+
     } catch (err: any) {
       toast.error(t('fileUpload.errorUpload', { message: err.message }));
       setUploadProgress(0);
     } finally {
       setIsUploading(false);
-      // Reset progress a bit later for user to see 100%
       setTimeout(() => setUploadProgress(0), 2000);
     }
   };

@@ -186,5 +186,9 @@
   },
   "navigation": {
     "createProposal": "Create Proposal"
+  },
+  "supabase": {
+    "logError": "Failed to record an important application event. Please contact support if issues persist.",
+    "clientNotInitialized": "Logging service is currently unavailable."
   }
 }

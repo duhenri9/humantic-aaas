@@ -8,6 +8,7 @@ import type { UserData } from '../components/UserInitializer'; // Assuming UserD
 import { createStripeCheckoutSession } from '../../services/paymentService';
 import toast from 'react-hot-toast';
 import { CreditCard, AlertTriangle, Loader2 } from 'lucide-react';
+import { logAuditEvent } from '../../services/supabaseService'; // Adjust path
 
 const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
@@ -54,14 +55,20 @@ const PaymentPage = () => {
         throw new Error(result.error || t('payment.errorNoSessionId', 'Could not retrieve payment session.'));
       }
 
+      // Log payment initiation event (before redirect)
+      logAuditEvent('PAYMENT_INITIATED_STRIPE',
+        { stripePriceId: STRIPE_PRICE_ID_ENTRADA, stripeSessionId: result.sessionId },
+        currentUser._id as string
+      ).then(() => console.log('[PaymentPage] PAYMENT_INITIATED_STRIPE event logged to Supabase.'))
+        .catch(err => console.error('[PaymentPage] Supabase logging error for PAYMENT_INITIATED_STRIPE:', err));
+
+      toast.success(t('payment.redirectingToStripe', 'Redirecting to Stripe...'), { id: toastId });
+
       const stripe = await stripePromise;
       if (!stripe) {
         // This check is somewhat redundant if stripePromise itself is null, but good for type safety
         throw new Error(t('payment.errorStripeJsNotLoaded', 'Stripe.js not loaded.'));
       }
-
-      toast.success(t('payment.redirectingToStripe', 'Redirecting to Stripe...'), { id: toastId });
-
       const { error: stripeRedirectError } = await stripe.redirectToCheckout({ sessionId: result.sessionId });
 
       if (stripeRedirectError) {

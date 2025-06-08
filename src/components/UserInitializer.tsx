@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { triggerOnboardingWorkflow } from '../services/n8nService'; // Adjust path
 import { ConvexUserId } from '../types';
+import { logAuditEvent } from '../services/supabaseService'; // Adjust path
 
 
 export interface UserData { // Exporting for potential use elsewhere, e.g. if currentUser is passed as prop
@@ -31,23 +32,20 @@ const UserInitializer = () => {
   const { t } = useTranslation();
   const [isStoringUser, setIsStoringUser] = useState(false);
   const [n8nTriggerAttemptedThisSession, setN8nTriggerAttemptedThisSession] = useState(false);
+  const [loginEventLogged, setLoginEventLogged] = useState(false);
 
   useEffect(() => {
     const initializeUser = async () => {
-      // Only attempt to store user if authenticated, not already stored (currentUser is null),
-      // not currently in the process of storing, and auth is no longer loading.
       if (isAuthenticated && !currentUser && !isStoringUser && !authLoading) {
         setIsStoringUser(true);
         console.log('[UserInitializer] Authenticated, attempting to store/verify user in DB...');
         try {
-          // storeUserMutation in convex/auth.ts should handle inserting if new, or returning existing user.
-          const userId = await storeUserMutation();
-          if (userId) {
-            console.log('[UserInitializer] User presence in DB verified/established. User ID:', userId);
-            // currentUser state will update automatically via useQuery, triggering other useEffects.
+          const userIdFromStoreUser = await storeUserMutation();
+          if (userIdFromStoreUser) {
+            console.log('[UserInitializer] User presence in DB verified/established. User ID:', userIdFromStoreUser);
+            // USER_SESSION_INITIALIZED will be logged by the next useEffect when currentUser is confirmed.
           } else {
-            // This case might indicate an issue with storeUser logic if it's expected to always return an ID.
-            console.warn('[UserInitializer] storeUserMutation returned null or undefined. User might not be in DB yet or query needs to update.');
+            console.warn('[UserInitializer] storeUserMutation returned null or undefined.');
           }
         } catch (error) {
           console.error('[UserInitializer] Error calling storeUserMutation:', error);
@@ -60,10 +58,28 @@ const UserInitializer = () => {
     initializeUser();
   }, [isAuthenticated, authLoading, currentUser, storeUserMutation, isStoringUser, t]);
 
+  // Separate useEffect to log when currentUser is confirmed after initialization or on subsequent loads
+  useEffect(() => {
+    if (currentUser && isAuthenticated && !loginEventLogged) {
+      logAuditEvent('USER_SESSION_INITIALIZED',
+        { email: currentUser.email, source: 'UserInitializer' },
+        currentUser._id as string // Cast ConvexId to string for Supabase
+      ).then(() => console.log('[UserInitializer] USER_SESSION_INITIALIZED event logged to Supabase.'))
+        .catch(err => console.error('[UserInitializer] Supabase logging error for USER_SESSION_INITIALIZED:', err));
+      setLoginEventLogged(true); // Log only once per component mount / user session initialization
+    }
+    // If user logs out and logs back in (new session), loginEventLogged should reset.
+    // This simple state won't handle that; a more robust session ID or timestamp comparison would be needed.
+    // For this subtask, "once per component mount if user is present" is the behavior.
+    // Reset loginEventLogged if authentication state changes to false (user logs out)
+    if (!isAuthenticated && loginEventLogged) {
+        setLoginEventLogged(false);
+    }
+  }, [currentUser, isAuthenticated, loginEventLogged]);
+
 
   useEffect(() => {
      const attemptN8nOnboarding = async () => {
-         // Check if user data is loaded, if onboarding field is false/undefined, and if we haven't tried this session
          if (currentUser && !currentUser.isOnboardingWorkflowTriggered && !n8nTriggerAttemptedThisSession) {
              setN8nTriggerAttemptedThisSession(true); // Mark as attempted for this session to prevent re-triggers on quick UI changes
              console.log('[UserInitializer] New user or user pending onboarding detected. Triggering n8n onboarding workflow...');

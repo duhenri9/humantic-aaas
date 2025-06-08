@@ -186,5 +186,9 @@
  },
   "navigation": {
     "createProposal": "Criar Proposta"
+  },
+  "supabase": {
+    "logError": "Falha ao registrar um evento importante da aplicação. Contate o suporte se o problema persistir.",
+    "clientNotInitialized": "Serviço de registro de eventos indisponível no momento."
   }
 }
