@@ -149,7 +149,8 @@
      "feedbackExamplePositive": "Usuário reportou resolução com sucesso.",
      "feedbackExampleNeutral": "Pergunta sobre funcionalidade X.",
      "feedbackExampleAction": "Usuário preso na etapa de pagamento.",
-     "defaultUserName": "Usuário"
+     "defaultUserName": "Usuário",
+     "agentStatusPendingPayment": "Pagamento Pendente"
   },
    "fileUpload": {
      "dropzoneDragActive": "Solte o arquivo aqui...",

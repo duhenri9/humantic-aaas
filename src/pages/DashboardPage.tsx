@@ -4,25 +4,43 @@ import { useTranslation } from 'react-i18next';
 import FileUpload from '../components/FileUpload';
 import FileList from '../components/FileList';
 import ClientJourneyStepper from '../components/ClientJourneyStepper';
-import { useConvexAuth } from 'convex/react';
+import { useConvexAuth, useQuery } from 'convex/react'; // Ensure useQuery is imported
+import { api } from '../../convex/_generated/api'; // Import full api object
+import type { UserData } from '../components/UserInitializer'; // Or your defined UserData type
 import { Link } from 'react-router-dom';
-import { BarChart3, UserCheck, TrendingUp, Settings2, LayoutGrid, CheckSquare, MessageCircleWarning, ExternalLink, Loader2 } from 'lucide-react'; // Added Loader2
+import { BarChart3, UserCheck, TrendingUp, Settings2, LayoutGrid, CheckSquare, MessageCircleWarning, ExternalLink, Loader2, HardDrive } from 'lucide-react'; // Added HardDrive
+
+// Helper function to format bytes
+const formatBytes = (bytes: number, decimals = 2): string => {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+};
 
 const DashboardPage = () => {
-   const { t, i18n } = useTranslation();
+  const { t } = useTranslation(); // Removed i18n as it wasn't used directly here
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth();
-   const currentUser = useQuery(api.auth.getCurrentUser) as UserData | null; // Fetch current user data
+  const currentUser = useQuery(api.auth.getCurrentUser) as UserData | null;
+  const userFiles = useQuery(api.files.getFilesForUser); // Fetch user's files
 
-  // Simulating user's name - in a real app, this would come from user data (e.g., useQuery(api.auth.getCurrentUser))
-   const userName = currentUser?.name || currentUser?.email || t('dashboard.defaultUserName', "User"); // Use real data if available
+  const userName = currentUser?.name || currentUser?.email || t('dashboard.defaultUserName', "User");
+
+  // Calculate dynamic file stats
+  const totalFilesCount = userFiles?.length ?? 0;
+  const totalSpaceUsedBytes = userFiles?.reduce((acc, file) => acc + (file.size ?? 0), 0) ?? 0;
+  const formattedSpaceUsed = formatBytes(totalSpaceUsedBytes);
+  const filesLoading = userFiles === undefined;
+
 
   if (authLoading) {
     return <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-gray-700">
         <Loader2 size={48} className="animate-spin text-blue-600 mb-4" />
         <p className="text-lg">{t('general.loadingAuth')}</p>
       </div>;
-  }
-
+   }
   if (!isAuthenticated) {
     return (
      <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-center p-4">
@@ -39,38 +57,46 @@ const DashboardPage = () => {
    );
   }
 
-   // Mock data for the dashboard sections - can be gradually replaced by currentUser data
+  const paymentCompleted = currentUser?.journeyStep_Payment_Completed === true || currentUser?.stripePaymentStatus === 'paid';
+
+  // Determine MCP Agent Status based on payment
+  const mcpAgentDisplayStatus = paymentCompleted ? 'active' : 'pending_payment';
+
+
+  // Update dashboardStats to use dynamic file data
   const dashboardStats = {
-     totalFiles: currentUser?.filesCount || 138, // Example: if filesCount was on UserData
-     activeAgents: currentUser?.activeAgentsCount || 2, // Example
-     spaceUsed: currentUser?.spaceUsedFormatted || "2.7 GB",
-     mcpAgentStatus: currentUser?.mcpAgentStatus || "active",
-     configProgressPercent: currentUser?.configProgress || 85,
-     feedbackItems: [ // This would likely come from a separate query
+    totalFiles: filesLoading ? 0 : totalFilesCount,
+    activeAgents: 2, // Remains mock
+    spaceUsed: filesLoading ? t('general.loadingSimple', 'Loading...') : formattedSpaceUsed,
+    mcpAgentStatus: mcpAgentDisplayStatus, // Use derived status
+    configProgressPercent: 85, // Remains mock
+    feedbackItems: [ /* ... (mock data from previous step) ... */
       { id: 1, type: "positive", textKey: "dashboard.feedbackExamplePositive", channel: "WhatsApp", time: "2 hours ago" },
       { id: 2, type: "neutral", textKey: "dashboard.feedbackExampleNeutral", channel: "Website Chat", time: "1 day ago" },
       { id: 3, type: "action_needed", textKey: "dashboard.feedbackExampleAction", channel: "CRM", time: "3 days ago" },
     ],
-     performanceIndicators: { // This also from separate queries or aggregated data
+    performanceIndicators: { /* ... (mock data from previous step) ... */
       engagementRate: "75%",
       leadsGenerated: 15,
       commonQueries: ["Preço", "Funcionalidades", "Suporte"]
     }
   };
 
-   const paymentStepCompleted = currentUser?.journeyStep_Payment_Completed === true || currentUser?.stripePaymentStatus === 'paid';
+  // const paymentStepCompleted = ... (already defined above)
 
   const getAgentStatusPill = (status: string) => {
-     switch (status) {
-         case 'active':
-             return <span className="px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-100 rounded-full">{t('dashboard.agentStatusActive')}</span>;
-         case 'pending_setup':
-             return <span className="px-3 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">{t('dashboard.agentStatusPending', 'Pending Setup')}</span>;
-         case 'needs_attention':
-             return <span className="px-3 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full">{t('dashboard.agentStatusAttention', 'Needs Attention')}</span>;
-         default:
-             return <span className="px-3 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full">{status}</span>;
-     }
+    switch (status) {
+      case 'active':
+        return <span className="px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-100 rounded-full">{t('dashboard.agentStatusActive')}</span>;
+      case 'pending_setup': // This case might be used later if we have more granular states
+        return <span className="px-3 py-1 text-xs font-semibold text-amber-700 bg-amber-100 rounded-full">{t('dashboard.agentStatusPending', 'Pending Setup')}</span>;
+      case 'pending_payment':
+        return <span className="px-3 py-1 text-xs font-semibold text-orange-500 bg-orange-100 rounded-full">{t('dashboard.agentStatusPendingPayment', 'Pending Payment')}</span>;
+      case 'needs_attention':
+        return <span className="px-3 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full">{t('dashboard.agentStatusAttention', 'Needs Attention')}</span>;
+      default:
+        return <span className="px-3 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full">{status}</span>;
+    }
   };
 
   const getFeedbackIcon = (type: string) => {
@@ -97,16 +123,26 @@ const DashboardPage = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="bg-white p-5 rounded-lg shadow hover:shadow-lg transition-shadow">
-              <h3 className="text-md font-medium text-gray-600">{t('dashboard.totalFiles')}</h3>
-              <p className="text-3xl font-bold text-gray-800">{dashboardStats.totalFiles}</p>
+                 <h3 className="text-md font-medium text-gray-600 flex items-center">
+                   <Settings2 size={16} className="mr-2 text-gray-400" /> {/* Icon for files */}
+                   {t('dashboard.totalFiles')}
+                 </h3>
+                 <p className="text-3xl font-bold text-gray-800">
+                   {filesLoading ? <Loader2 size={28} className="animate-spin text-human-blue" /> : dashboardStats.totalFiles}
+                 </p>
             </div>
             <div className="bg-white p-5 rounded-lg shadow hover:shadow-lg transition-shadow">
               <h3 className="text-md font-medium text-gray-600">{t('dashboard.activeAgents')}</h3>
               <p className="text-3xl font-bold text-gray-800">{dashboardStats.activeAgents}</p>
             </div>
             <div className="bg-white p-5 rounded-lg shadow hover:shadow-lg transition-shadow">
-              <h3 className="text-md font-medium text-gray-600">{t('dashboard.spaceUsed')}</h3>
-              <p className="text-3xl font-bold text-gray-800">{dashboardStats.spaceUsed}</p>
+                 <h3 className="text-md font-medium text-gray-600 flex items-center">
+                   <HardDrive size={16} className="mr-2 text-gray-400" /> {/* Icon for space */}
+                   {t('dashboard.spaceUsed')}
+                 </h3>
+                 <p className="text-3xl font-bold text-gray-800">
+                   {filesLoading ? <Loader2 size={28} className="animate-spin text-human-blue" /> : dashboardStats.spaceUsed}
+                 </p>
             </div>
           </div>
         </section>

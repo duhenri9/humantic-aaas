@@ -149,7 +149,8 @@
      "feedbackExamplePositive": "User reported successful resolution.",
      "feedbackExampleNeutral": "Inquiry about feature X.",
      "feedbackExampleAction": "User stuck at payment step.",
-     "defaultUserName": "User"
+     "defaultUserName": "User",
+     "agentStatusPendingPayment": "Pending Payment"
   },
   "fileUpload": {
      "dropzoneDragActive": "Drop the file here...",
