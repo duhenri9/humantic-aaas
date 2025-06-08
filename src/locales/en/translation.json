@@ -30,6 +30,47 @@
      "errorStoringUser": "Could not initialize user session. Please try refreshing.",
      "redirectingToDashboard": "Redirecting to dashboard..."
   },
+  "proposalForm": {
+    "title": "Create New Proposal",
+    "clientNameLabel": "Client Name",
+    "clientNamePlaceholder": "Enter client's full name",
+    "clientEmailLabel": "Client Email",
+    "clientEmailPlaceholder": "Enter client's email for sending and signature",
+    "projectNameLabel": "Project/Service Name",
+    "projectNamePlaceholder": "E.g., Advanced Agent Setup",
+    "scopeLabel": "Scope of Work",
+    "scopePlaceholder": "Describe the services, deliverables, and scope...",
+    "priceLabel": "Total Price",
+    "pricePlaceholder": "Enter total project price (e.g., 1500.00)",
+    "currencyLabel": "Currency",
+    "currencyPlaceholder": "e.g., BRL or USD",
+    "paymentTermsLabel": "Payment Terms",
+    "paymentTermsPlaceholder": "E.g., 50% upfront, 50% on completion",
+    "validityPeriodLabel": "Proposal Validity Period",
+    "validityPeriodPlaceholder": "E.g., Valid for 30 days",
+    "generateButton": "Generate Proposal (Preview)",
+    "fieldRequired": "This field is required",
+    "generatingInProgress": "Generating proposal...",
+    "generateSuccess": "Proposal generated successfully!",
+    "generateErrorUnknown": "Unknown error generating PDF.",
+    "generateSuccessPlaceholder": "Form data ready for PDF generation! (Simulated)",
+    "generateError": "Error generating proposal",
+    "paymentTermsDefault": "50% upfront, 50% on project completion.",
+    "validityPeriodDefault": "This proposal is valid for 15 days from the date of issue.",
+    "pdfReadyTitle": "Proposal Ready!",
+    "pdfReadyMessage": "Your PDF proposal has been generated:",
+    "regenerateButton": "Generate New Proposal",
+    "sendForSignatureButton": "Send for Digital Signature",
+    "errorNoPdfForSignature": "No PDF generated to send for signature.",
+    "errorNoClientEmailForSignature": "Client email not provided for signature.",
+    "sendingForSignatureInProgress": "Sending for signature...",
+    "sendForSignatureSuccess": "Proposal sent for signature!",
+    "sendForSignatureErrorUnknown": "Unknown error sending for signature.",
+    "sendForSignatureError": "Error sending for signature",
+    "signatureReqInfo": "Signature request sent:",
+    "signatureReqError": "Failed to send for signature:",
+    "signatureStatusTitle": "Signature Status"
+  },
   "clientJourney": {
     "title": "Your Onboarding Journey",
     "step1_title": "Pre-Onboarding",
@@ -109,6 +150,10 @@
      "pageNotFoundMessage": "Sorry, the page you are looking for does not exist.",
      "goHome": "Go back to Home",
      "deletedSuccessfully": "deleted successfully",
-     "errorDeleting": "Error deleting file"
+     "errorDeleting": "Error deleting file",
+     "loadingSimple": "Loading..."
+  },
+  "navigation": {
+    "createProposal": "Create Proposal"
   }
 }

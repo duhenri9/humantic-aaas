@@ -30,6 +30,47 @@
      "errorStoringUser": "Não foi possível iniciar a sessão do usuário. Por favor, tente atualizar.",
      "redirectingToDashboard": "Redirecionando para o painel..."
   },
+  "proposalForm": {
+    "title": "Criar Nova Proposta",
+    "clientNameLabel": "Nome do Cliente",
+    "clientNamePlaceholder": "Nome completo do cliente",
+    "clientEmailLabel": "Email do Cliente",
+    "clientEmailPlaceholder": "Email para envio e assinatura",
+    "projectNameLabel": "Nome do Projeto/Serviço",
+    "projectNamePlaceholder": "Ex: Configuração de Agente Avançado",
+    "scopeLabel": "Escopo do Trabalho",
+    "scopePlaceholder": "Descreva os serviços, entregáveis, escopo...",
+    "priceLabel": "Preço Total",
+    "pricePlaceholder": "Valor total do projeto (ex: 1500,00)",
+    "currencyLabel": "Moeda",
+    "currencyPlaceholder": "Ex: BRL ou USD",
+    "paymentTermsLabel": "Termos de Pagamento",
+    "paymentTermsPlaceholder": "Ex: 50% adiantado, 50% na conclusão",
+    "validityPeriodLabel": "Validade da Proposta",
+    "validityPeriodPlaceholder": "Ex: Válido por 30 dias",
+    "generateButton": "Gerar Proposta (Prévia)",
+    "fieldRequired": "Este campo é obrigatório",
+    "generatingInProgress": "Gerando proposta...",
+    "generateSuccess": "Proposta gerada com sucesso!",
+    "generateErrorUnknown": "Erro desconhecido ao gerar PDF.",
+    "generateSuccessPlaceholder": "Dados do formulário prontos para geração! (Simulado)",
+    "generateError": "Erro ao gerar proposta",
+    "paymentTermsDefault": "50% adiantado, 50% na conclusão do projeto.",
+    "validityPeriodDefault": "Esta proposta é válida por 15 dias a partir da data de emissão.",
+    "pdfReadyTitle": "Proposta Pronta!",
+    "pdfReadyMessage": "Sua proposta em PDF foi gerada:",
+    "regenerateButton": "Gerar Nova Proposta",
+    "sendForSignatureButton": "Enviar para Assinatura Digital",
+    "errorNoPdfForSignature": "Nenhum PDF gerado para enviar para assinatura.",
+    "errorNoClientEmailForSignature": "Email do cliente não informado para assinatura.",
+    "sendingForSignatureInProgress": "Enviando para assinatura...",
+    "sendForSignatureSuccess": "Proposta enviada para assinatura!",
+    "sendForSignatureErrorUnknown": "Erro desconhecido ao enviar para assinatura.",
+    "sendForSignatureError": "Erro ao enviar para assinatura",
+    "signatureReqInfo": "Solicitação de assinatura enviada:",
+    "signatureReqError": "Falha ao enviar para assinatura:",
+    "signatureStatusTitle": "Status da Assinatura"
+  },
   "clientJourney": {
     "title": "Sua Jornada de Onboarding",
     "step1_title": "Pré-Onboarding",
@@ -109,6 +150,10 @@
      "pageNotFoundMessage": "Desculpe, a página que você está procurando não existe.",
      "goHome": "Voltar para o Início",
      "deletedSuccessfully": "excluído com sucesso",
-     "errorDeleting": "Erro ao excluir arquivo"
- }
+     "errorDeleting": "Erro ao excluir arquivo",
+     "loadingSimple": "Carregando..."
+ },
+  "navigation": {
+    "createProposal": "Criar Proposta"
+  }
 }

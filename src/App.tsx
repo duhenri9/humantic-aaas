@@ -11,7 +11,8 @@ import DashboardPage from './pages/DashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AuthButtons from './components/AuthButtons';
 import ProtectedRoute from './components/ProtectedRoute';
-import HumanTicLogo from './components/HumanTicLogo'; // Example: create a logo component
+import HumanTicLogo from './components/HumanTicLogo';
+import CreateProposalPage from './pages/CreateProposalPage'; // Adjust path
 
 function App() {
   const { i18n, t } = useTranslation();
@@ -65,10 +66,10 @@ function App() {
         <Link to="/" className="flex items-center"> {/* Ensure link wraps logo for clickability */}
           <HumanTicLogo /> {/* Using a component for the logo */}
         </Link>
-        <nav className="space-x-4 hidden sm:block"> {/* Hide nav on small screens for simplicity */}
+         <nav className="space-x-4 hidden sm:block">
           {/* Example nav links - can be expanded and translated */}
-          {/* <Link to="/features" className="text-gray-600 hover:text-blue-600">{t('navigation.features', 'Features')}</Link> */}
-          {/* <Link to="/pricing" className="text-gray-600 hover:text-blue-600">{t('navigation.pricing', 'Pricing')}</Link> */}
+           <Link to="/proposals/create" className="text-gray-600 hover:text-human-blue">{t('navigation.createProposal', 'Create Proposal')}</Link>
+           {/* <Link to="/features" className="text-gray-600 hover:text-human-blue">{t('navigation.features', 'Features')}</Link> */}
         </nav>
         <div className="flex items-center">
           <AuthButtons />
@@ -85,6 +86,10 @@ function App() {
             path="/dashboard"
             element={<ProtectedRoute><DashboardPage /></ProtectedRoute>}
           />
+             <Route
+               path="/proposals/create"
+               element={<ProtectedRoute><CreateProposalPage /></ProtectedRoute>}
+             />
           <Route
             path="/dashboard/visitor"
             element={

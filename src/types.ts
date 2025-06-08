@@ -19,3 +19,15 @@ export interface FileEntry {
   userId: ConvexUserId;
   _creationTime: number;
 }
+
+export interface ProposalFormData {
+  clientName: string;
+  clientEmail: string;
+  projectName: string;
+  scope: string;
+  price: string;
+  currency: string;
+  paymentTerms: string;
+  validityPeriod: string;
+  // Add any other fields that might be needed by the PDF generation
+}
