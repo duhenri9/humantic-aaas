@@ -18,7 +18,32 @@
     "alreadyHaveAccount": "Já tem uma conta? Entre",
     "accessDenied": "Acesso Negado",
     "pleaseLoginDashboard": "Por favor, faça login para ver seu painel.",
-    "goToLogin": "Ir para Login"
+     "goToLogin": "Ir para Login",
+     "loginTitle": "Acesse sua Conta",
+     "registerTitle": "Crie sua Conta",
+     "creatingAccountLoading": "Criando sua conta...",
+     "accountCreatedSuccess": "Conta criada com sucesso!",
+     "initiatingOnboarding": "Iniciando processo de onboarding...",
+     "onboardingStartedSuccess": "Processo de onboarding iniciado!",
+     "onboardingError": "Falha no processo de onboarding",
+     "registrationError": "Falha no registro"
+  },
+  "clientJourney": {
+    "title": "Sua Jornada de Onboarding",
+    "step1_title": "Pré-Onboarding",
+    "step1_desc": "Escolha seu plano e preencha o formulário inicial.",
+    "step2_title": "Proposta e Contrato",
+    "step2_desc": "Geração automatizada e assinatura digital da sua proposta e contrato.",
+    "step3_title": "Pagamento Inicial",
+    "step3_desc": "Realize o pagamento inicial via link Stripe ou Pagar.me.",
+    "step4_title": "Ativação do Agente",
+    "step4_desc": "Seu agente será ativado em até 5 dias úteis após assinatura do contrato e aprovação do modelo.",
+    "step5_title": "Acesso ao Dashboard",
+    "step5_desc": "Acesso completo ao dashboard liberado para visualizar e gerenciar seu agente.",
+    "step6_title": "Manutenção Mensal",
+    "step6_desc": "Melhoria contínua do agente através de feedback e reprogramação (Altamente Recomendado).",
+    "step7_title": "Suporte Contínuo",
+    "step7_desc": "Suporte humanizado via WhatsApp e reuniões pontuais."
   },
   "dashboard": {
       "visitorTitle": "Painel do Visitante",
@@ -38,7 +63,20 @@
      "usageFeedbackPerformance": "Feedback de Uso e Performance",
      "feedbackPlaceholder": "Feedback detalhado e indicadores de performance serão exibidos aqui (ex: engajamento por canal).",
      "contentToBeImplemented": "(Conteúdo a ser implementado)",
-     "fileManagement": "Gerenciamento de Arquivos"
+     "fileManagement": "Gerenciamento de Arquivos",
+     "greeting": "Bem-vindo(a), {{userName}}!",
+     "welcomeSubtitle": "Aqui está o que está acontecendo com sua conta hoje.",
+     "agentStatusPending": "Configuração Pendente",
+     "agentStatusAttention": "Requer Atenção",
+     "configIsComplete": "Configuração concluída!",
+     "recentFeedback": "Feedback Recente",
+     "keyMetrics": "Métricas Chave",
+     "metricEngagementRate": "Taxa de Engajamento",
+     "metricLeadsGenerated": "Leads Gerados",
+     "metricCommonQueries": "Consultas Mais Comuns",
+     "feedbackExamplePositive": "Usuário reportou resolução com sucesso.",
+     "feedbackExampleNeutral": "Pergunta sobre funcionalidade X.",
+     "feedbackExampleAction": "Usuário preso na etapa de pagamento."
   },
    "fileUpload": {
      "dropzoneDragActive": "Solte o arquivo aqui...",
@@ -58,6 +96,7 @@
      "pleaseLogin": "Por favor, faça login para ver seus arquivos.",
      "noFiles": "Nenhum arquivo enviado ainda.",
      "yourFiles": "Seus Arquivos",
+     "useUploaderToAdd": "Use o uploader acima para adicionar seu primeiro arquivo.",
      "download": "Baixar",
      "delete": "Excluir",
      "confirmDelete": "Tem certeza que deseja excluir \"{{fileName}}\"?"

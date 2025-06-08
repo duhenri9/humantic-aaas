@@ -4,8 +4,10 @@ import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api'; // Adjust path as needed
 import FileListItem, { ConvexFile } from './FileListItem'; // Assuming FileListItem is created and ConvexFile is exported
 import { Loader2, FolderOpen } from 'lucide-react'; // Loading spinner and empty folder icon
+import { useTranslation } from 'react-i18next';
 
 const FileList = () => {
+  const { t } = useTranslation();
   // Fetch files using the Convex query.
   // Note: `files` will be `undefined` on initial load, then an array or null.
   const files = useQuery(api.files.getFilesForUser);
@@ -16,7 +18,7 @@ const FileList = () => {
     return (
       <div className="flex flex-col justify-center items-center p-8 text-gray-500">
         <Loader2 size={32} className="animate-spin text-blue-600" />
-        <p className="ml-2 mt-2">Loading files...</p>
+        <p className="ml-2 mt-2">{t('fileList.loading')}</p>
       </div>
     );
   }
@@ -26,7 +28,7 @@ const FileList = () => {
   if (!isAuthenticated && (!files || files.length === 0)) {
      return (
         <div className="text-center text-gray-500 py-10">
-          <p>Please log in to view your files.</p>
+          <p>{t('fileList.pleaseLogin')}</p>
         </div>
      );
   }
@@ -36,8 +38,8 @@ const FileList = () => {
     return (
       <div className="text-center text-gray-500 py-10">
         <FolderOpen size={48} className="mx-auto mb-3 text-gray-400" />
-        <p className="text-lg">No files uploaded yet.</p>
-        <p className="text-sm">Use the uploader above to add your first file.</p>
+        <p className="text-lg">{t('fileList.noFiles')}</p>
+        <p className="text-sm">{t('fileList.useUploaderToAdd', 'Use the uploader above to add your first file.')}</p>
       </div>
     );
   }
@@ -45,7 +47,7 @@ const FileList = () => {
   // Success state: files array has items
   return (
     <div className="mt-8">
-      <h3 className="text-xl font-semibold mb-4 text-gray-700">Your Files</h3>
+      <h3 className="text-xl font-semibold mb-4 text-gray-700">{t('fileList.yourFiles')}</h3>
       <div className="space-y-1"> {/* Provides spacing between items if any margin is removed from FileListItem itself */}
         {files.map((file) => (
           // Pass the file object, ensuring it matches ConvexFile type.

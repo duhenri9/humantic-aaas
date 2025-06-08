@@ -18,7 +18,32 @@
     "alreadyHaveAccount": "Already have an account? Login",
     "accessDenied": "Access Denied",
     "pleaseLoginDashboard": "Please log in to view your dashboard.",
-    "goToLogin": "Go to Login"
+     "goToLogin": "Go to Login",
+     "loginTitle": "Login to your Account",
+     "registerTitle": "Create your Account",
+     "creatingAccountLoading": "Creating your account...",
+     "accountCreatedSuccess": "Account created successfully!",
+     "initiatingOnboarding": "Initiating onboarding process...",
+     "onboardingStartedSuccess": "Onboarding process started!",
+     "onboardingError": "Onboarding process failed",
+     "registrationError": "Registration failed"
+  },
+  "clientJourney": {
+    "title": "Your Onboarding Journey",
+    "step1_title": "Pre-Onboarding",
+    "step1_desc": "Choose your plan and fill out the initial form.",
+    "step2_title": "Proposal & Contract",
+    "step2_desc": "Automated generation and digital signature of your proposal and contract.",
+    "step3_title": "Initial Payment",
+    "step3_desc": "Make the initial payment via Stripe or Pagar.me link.",
+    "step4_title": "Agent Activation",
+    "step4_desc": "Your agent will be activated within 5 business days after contract signature and model approval.",
+    "step5_title": "Dashboard Access",
+    "step5_desc": "Full dashboard access granted to view and manage your agent.",
+    "step6_title": "Monthly Maintenance",
+    "step6_desc": "Ongoing agent improvement through feedback and reprogramming (Highly Recommended).",
+    "step7_title": "Continuous Support",
+    "step7_desc": "Humanized support via WhatsApp and scheduled meetings."
   },
   "dashboard": {
      "visitorTitle": "Visitor Dashboard",
@@ -38,7 +63,20 @@
     "usageFeedbackPerformance": "Usage Feedback & Performance",
     "feedbackPlaceholder": "Detailed feedback and performance indicators will be displayed here (e.g., engagement by channel).",
     "contentToBeImplemented": "(Content to be implemented)",
-    "fileManagement": "File Management"
+     "fileManagement": "File Management",
+     "greeting": "Welcome, {{userName}}!",
+     "welcomeSubtitle": "Here's what's happening with your account today.",
+     "agentStatusPending": "Pending Setup",
+     "agentStatusAttention": "Needs Attention",
+     "configIsComplete": "Configuration is complete!",
+     "recentFeedback": "Recent Feedback",
+     "keyMetrics": "Key Metrics",
+     "metricEngagementRate": "Engagement Rate",
+     "metricLeadsGenerated": "Leads Generated",
+     "metricCommonQueries": "Most Common Queries",
+     "feedbackExamplePositive": "User reported successful resolution.",
+     "feedbackExampleNeutral": "Inquiry about feature X.",
+     "feedbackExampleAction": "User stuck at payment step."
   },
   "fileUpload": {
      "dropzoneDragActive": "Drop the file here...",
@@ -58,6 +96,7 @@
      "pleaseLogin": "Please log in to view your files.",
      "noFiles": "No files uploaded yet.",
      "yourFiles": "Your Files",
+     "useUploaderToAdd": "Use the uploader above to add your first file.",
      "download": "Download",
      "delete": "Delete",
      "confirmDelete": "Are you sure you want to delete \"{{fileName}}\"?"

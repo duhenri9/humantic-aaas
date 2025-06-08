@@ -3,6 +3,7 @@ import React from 'react';
 import { useConvexAuth } from 'convex/react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Loader2 } from 'lucide-react'; // For loading state
+import { useTranslation } from 'react-i18next';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -11,12 +12,13 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const location = useLocation();
+  const { t } = useTranslation();
 
   if (isLoading) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-gray-700">
         <Loader2 size={48} className="animate-spin text-blue-600 mb-4" />
-        <p className="text-lg">Loading authentication...</p>
+        <p className="text-lg">{t('general.loadingAuth')}</p>
       </div>
     );
   }
