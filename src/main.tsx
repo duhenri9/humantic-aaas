@@ -1,23 +1,29 @@
-// Placeholder main.tsx
-// This file is the entry point for the Vite application.
-
+// src/main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import './i18n'; // Initialize i18next
+import { ConvexReactClient } from "convex/react";
+import { ConvexProviderWithAuth } from "convex/react"; // Corrected import
+// import { auth } from "convex/auth_client"; // This might be needed depending on specific auth setup
 
-// Placeholder App component (will need to be created)
-// import App from './App';
+const convexUrl = import.meta.env.VITE_CONVEX_URL;
 
-// Placeholder index.css (should be created for Tailwind)
-// import './index.css';
+if (!convexUrl) {
+  throw new Error("VITE_CONVEX_URL environment variable not set!");
+}
 
-console.log("main.tsx loaded");
+const convex = new ConvexReactClient(convexUrl);
+// const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL!); // Simpler if sure it's set
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-      {/* <App /> */}
-      <div>Hello from main.tsx!</div>
+      <ConvexProviderWithAuth client={convex}>
+        <App />
+      </ConvexProviderWithAuth>
     </React.StrictMode>,
   );
 } else {

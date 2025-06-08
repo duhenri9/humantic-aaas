@@ -1,0 +1,73 @@
+{
+  "landingPage": {
+    "title": "HumanTic",
+    "visitorButton": "Access as Visitor",
+    "platformButton": "Enter Platform",
+    "languageToggle": "EN/PT",
+    "footer": "© {{year}} HumanTic. All rights reserved."
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Sign Up",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "signInButton": "Sign In",
+    "signUpButton": "Sign Up",
+    "dontHaveAccount": "Don't have an account? Sign Up",
+    "alreadyHaveAccount": "Already have an account? Login",
+    "accessDenied": "Access Denied",
+    "pleaseLoginDashboard": "Please log in to view your dashboard.",
+    "goToLogin": "Go to Login"
+  },
+  "dashboard": {
+     "visitorTitle": "Visitor Dashboard",
+     "visitorMessage": "This is a public area. Content will be added soon.",
+    "title": "My Dashboard",
+    "overview": "Overview",
+    "totalFiles": "Total Files",
+    "activeAgents": "Active Agents (MCP)",
+    "spaceUsed": "Space Used",
+    "agentStatusConfig": "Agent Status & Configuration",
+    "mcpActivation": "Advanced Agent (MCP) Activation",
+    "agentStatusActive": "Active",
+    "manageAgentButton": "Manage Agent",
+    "configProgress": "Configuration Progress",
+    "configComplete": "{{progress}}% Complete",
+    "configNextStep": "Next step: Review settings",
+    "usageFeedbackPerformance": "Usage Feedback & Performance",
+    "feedbackPlaceholder": "Detailed feedback and performance indicators will be displayed here (e.g., engagement by channel).",
+    "contentToBeImplemented": "(Content to be implemented)",
+    "fileManagement": "File Management"
+  },
+  "fileUpload": {
+     "dropzoneDragActive": "Drop the file here...",
+     "dropzoneDefault": "Drag & drop file here, or click to select",
+     "maxSizeAndTypes": "Max 50MB. Types: PDF, Images, DOCs, TXT, XLS",
+     "selectedFileDetails": "{{size}} MB - {{type}}",
+     "uploadButton": "Upload File",
+     "uploadingButton": "Uploading...",
+     "errorNoFile": "No file selected.",
+     "errorFileType": "File type not allowed.",
+     "errorFileSize": "File size exceeds {{maxSize}}MB limit.",
+     "errorUpload": "Upload error: {{message}}",
+     "successUpload": "File uploaded successfully!"
+  },
+  "fileList": {
+     "loading": "Loading files...",
+     "pleaseLogin": "Please log in to view your files.",
+     "noFiles": "No files uploaded yet.",
+     "yourFiles": "Your Files",
+     "download": "Download",
+     "delete": "Delete",
+     "confirmDelete": "Are you sure you want to delete \"{{fileName}}\"?"
+  },
+  "general": {
+     "loadingAuth": "Loading authentication...",
+     "pageNotFound": "Page Not Found",
+     "pageNotFoundMessage": "Sorry, the page you are looking for does not exist.",
+     "goHome": "Go back to Home",
+     "deletedSuccessfully": "deleted successfully",
+     "errorDeleting": "Error deleting file"
+  }
+}

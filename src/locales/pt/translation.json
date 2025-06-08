@@ -1,0 +1,73 @@
+{
+  "landingPage": {
+    "title": "HumanTic",
+    "visitorButton": "Acessar como visitante",
+    "platformButton": "Entrar na plataforma",
+    "languageToggle": "PT/EN",
+    "footer": "© {{year}} HumanTic. Todos os direitos reservados."
+  },
+  "auth": {
+    "login": "Entrar",
+    "logout": "Sair",
+    "register": "Registrar",
+    "emailLabel": "Endereço de Email",
+    "passwordLabel": "Senha",
+    "signInButton": "Entrar",
+    "signUpButton": "Criar Conta",
+    "dontHaveAccount": "Não tem uma conta? Registre-se",
+    "alreadyHaveAccount": "Já tem uma conta? Entre",
+    "accessDenied": "Acesso Negado",
+    "pleaseLoginDashboard": "Por favor, faça login para ver seu painel.",
+    "goToLogin": "Ir para Login"
+  },
+  "dashboard": {
+      "visitorTitle": "Painel do Visitante",
+      "visitorMessage": "Esta é uma área pública. Conteúdo será adicionado em breve.",
+     "title": "Meu Painel",
+     "overview": "Visão Geral",
+     "totalFiles": "Total de Arquivos",
+     "activeAgents": "Agentes Ativos (MCP)",
+     "spaceUsed": "Espaço Usado",
+     "agentStatusConfig": "Status e Configuração do Agente",
+     "mcpActivation": "Ativação do Agente Avançado (MCP)",
+     "agentStatusActive": "Ativo",
+     "manageAgentButton": "Gerenciar Agente",
+     "configProgress": "Progresso da Configuração",
+     "configComplete": "{{progress}}% Completo",
+     "configNextStep": "Próximo passo: Revisar configurações",
+     "usageFeedbackPerformance": "Feedback de Uso e Performance",
+     "feedbackPlaceholder": "Feedback detalhado e indicadores de performance serão exibidos aqui (ex: engajamento por canal).",
+     "contentToBeImplemented": "(Conteúdo a ser implementado)",
+     "fileManagement": "Gerenciamento de Arquivos"
+  },
+   "fileUpload": {
+     "dropzoneDragActive": "Solte o arquivo aqui...",
+     "dropzoneDefault": "Arraste e solte o arquivo aqui, ou clique para selecionar",
+     "maxSizeAndTypes": "Máx 50MB. Tipos: PDF, Imagens, DOCs, TXT, XLS",
+     "selectedFileDetails": "{{size}} MB - {{type}}",
+     "uploadButton": "Enviar Arquivo",
+     "uploadingButton": "Enviando...",
+     "errorNoFile": "Nenhum arquivo selecionado.",
+     "errorFileType": "Tipo de arquivo não permitido.",
+     "errorFileSize": "O tamanho do arquivo excede o limite de {{maxSize}}MB.",
+     "errorUpload": "Erro no envio: {{message}}",
+     "successUpload": "Arquivo enviado com sucesso!"
+ },
+ "fileList": {
+     "loading": "Carregando arquivos...",
+     "pleaseLogin": "Por favor, faça login para ver seus arquivos.",
+     "noFiles": "Nenhum arquivo enviado ainda.",
+     "yourFiles": "Seus Arquivos",
+     "download": "Baixar",
+     "delete": "Excluir",
+     "confirmDelete": "Tem certeza que deseja excluir \"{{fileName}}\"?"
+ },
+ "general": {
+     "loadingAuth": "Carregando autenticação...",
+     "pageNotFound": "Página Não Encontrada",
+     "pageNotFoundMessage": "Desculpe, a página que você está procurando não existe.",
+     "goHome": "Voltar para o Início",
+     "deletedSuccessfully": "excluído com sucesso",
+     "errorDeleting": "Erro ao excluir arquivo"
+ }
+}
