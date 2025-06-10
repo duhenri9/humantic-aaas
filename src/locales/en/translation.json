@@ -182,7 +182,8 @@
      "goHome": "Go back to Home",
      "deletedSuccessfully": "deleted successfully",
      "errorDeleting": "Error deleting file",
-     "loadingSimple": "Loading..."
+     "loadingSimple": "Loading...",
+     "contentPlaceholder": "Content for this section will be implemented soon."
   },
   "navigation": {
     "createProposal": "Create Proposal"
@@ -190,5 +191,33 @@
   "supabase": {
     "logError": "Failed to record an important application event. Please contact support if issues persist.",
     "clientNotInitialized": "Logging service is currently unavailable."
+  },
+  "clientDashboardSidebar": {
+    "clientPanelTitle": "Client Panel",
+    "home": "Overview",
+    "myAgent": "My Agent",
+    "metrics": "Metrics",
+    "settings": "Agent Settings",
+    "documents": "Contract & Proposal",
+    "support": "Support",
+    "language": "Language"
+  },
+  "clientDashboardHeader": {
+    "clientNamePlaceholder": "Client Company Name",
+    "agentNamePlaceholder": "Agent: My Custom Agent",
+    "updateContextButton": "Update Context",
+    "statusLabel": "Status:",
+    "statusActive": "Active",
+    "statusValidating": "Validating",
+    "statusPaused": "Paused",
+    "toggleNavigation": "Toggle navigation"
+  },
+  "clientDashboardPages": {
+    "overviewTitle": "Client Dashboard Overview",
+    "myAgentTitle": "My Agent Details",
+    "metricsTitle": "Performance Metrics",
+    "agentSettingsTitle": "Agent Settings",
+    "documentsTitle": "Contracts & Proposals",
+    "supportTitle": "Support Center"
   }
 }

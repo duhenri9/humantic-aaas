@@ -182,7 +182,8 @@
      "goHome": "Voltar para o Início",
      "deletedSuccessfully": "excluído com sucesso",
      "errorDeleting": "Erro ao excluir arquivo",
-     "loadingSimple": "Carregando..."
+     "loadingSimple": "Carregando...",
+     "contentPlaceholder": "Conteúdo desta seção será implementado em breve."
  },
   "navigation": {
     "createProposal": "Criar Proposta"
@@ -190,5 +191,33 @@
   "supabase": {
     "logError": "Falha ao registrar um evento importante da aplicação. Contate o suporte se o problema persistir.",
     "clientNotInitialized": "Serviço de registro de eventos indisponível no momento."
+  },
+  "clientDashboardSidebar": {
+    "clientPanelTitle": "Painel do Cliente",
+    "home": "Início",
+    "myAgent": "Meu Agente",
+    "metrics": "Métricas",
+    "settings": "Ajustes",
+    "documents": "Contrato & Proposta",
+    "support": "Suporte",
+    "language": "Idioma"
+  },
+  "clientDashboardHeader": {
+    "clientNamePlaceholder": "Nome da Empresa Cliente",
+    "agentNamePlaceholder": "Agente: Meu Agente Personalizado",
+    "updateContextButton": "Atualizar Contexto",
+    "statusLabel": "Status:",
+    "statusActive": "Ativo",
+    "statusValidating": "Em validação",
+    "statusPaused": "Pausado",
+    "toggleNavigation": "Alternar navegação"
+  },
+  "clientDashboardPages": {
+    "overviewTitle": "Visão Geral do Painel do Cliente",
+    "myAgentTitle": "Detalhes do Meu Agente",
+    "metricsTitle": "Métricas de Performance",
+    "agentSettingsTitle": "Configurações do Agente",
+    "documentsTitle": "Contratos e Propostas",
+    "supportTitle": "Central de Suporte"
   }
 }
