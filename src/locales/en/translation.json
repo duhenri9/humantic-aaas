@@ -210,7 +210,8 @@
     "statusActive": "Active",
     "statusValidating": "Validating",
     "statusPaused": "Paused",
-    "toggleNavigation": "Toggle navigation"
+    "toggleNavigation": "Toggle navigation",
+    "updateContextButtonShort": "Context"
   },
   "clientDashboardPages": {
     "overviewTitle": "Client Dashboard Overview",
@@ -219,5 +220,42 @@
     "agentSettingsTitle": "Agent Settings",
     "documentsTitle": "Contracts & Proposals",
     "supportTitle": "Support Center"
+  },
+  "agentSettingsPage": {
+    "generalTitle": "General Agent Settings",
+    "generalPlaceholder": "Settings for agent name (if editable here), operational hours, and other general configurations will be available.",
+    "channelTitle": "Channel Configurations",
+    "channelPlaceholder": "Placeholders for specific settings related to channels like WhatsApp, Webchat, etc. (e.g., API keys, welcome messages per channel).",
+    "notificationsTitle": "Notification Preferences",
+    "notificationsPlaceholder": "Configure your preferences for receiving notifications about agent activity, performance summaries, or critical alerts.",
+    "integrationsTitle": "Integration Settings",
+    "integrationsPlaceholder": "Manage connections and settings for third-party tools or services integrated with your agent.",
+    "billingTitle": "Subscription & Billing",
+    "billingPlaceholder": "View your current plan, manage billing details, or access payment history. (May link to a dedicated billing section/page)."
+  },
+  "metricsPage": {
+    "kpiSummaryTitle": "Key Performance Indicators (KPIs)",
+    "kpiTotalInteractions": "Total Interactions:",
+    "kpiAvgResponseTime": "Avg. Response Time:",
+    "kpiPositiveFeedback": "Positive Feedback Rate:",
+    "kpiPlaceholderValue": "[Data N/A]",
+    "performanceChartTitle": "Performance Over Time",
+    "performanceChartPlaceholder": "A line chart visualizing agent performance trends (e.g., interactions, feedback score) over selected periods will be displayed here. (Integration with Recharts planned).",
+    "tagsBreakdownTitle": "Interactions by Tag/Category",
+    "tagsBreakdownPlaceholder": "A visual breakdown of interactions based on tags or categories (e.g., 'scheduling', 'welcome', 'conversion') will be shown here.",
+    "dataExportTitle": "Data Export",
+    "dataExportPlaceholder": "Options to export metrics data in formats like CSV will be available here."
+  },
+  "myAgentPage": {
+    "agentNameTitle": "Agent Name",
+    "agentNamePlaceholder": "[Dynamic Agent Name Will Appear Here]",
+    "agentStatusTitle": "Current Status",
+    "agentStatusPlaceholder": "[Dynamic Agent Status Will Appear Here (e.g., Active, Paused)]",
+    "behaviorTitle": "Behavior & Personality",
+    "behaviorPlaceholder": "A summary of the agent's configured tone, key skills, and personality traits will be displayed here (view-only).",
+    "contextEditingTitle": "Update Agent Context & Knowledge",
+    "contextEditingPlaceholder": "A form or interface to update the agent's contextual knowledge, FAQs, and other specific data points will be available here. This is where 'Update Context' functionality will be implemented.",
+    "revisionHistoryTitle": "Revision History",
+    "revisionHistoryPlaceholder": "A log of changes made to the agent's context or configuration will be listed here."
   }
 }

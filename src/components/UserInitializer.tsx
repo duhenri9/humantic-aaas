@@ -6,27 +6,15 @@ import { Id } from '../../convex/_generated/dataModel'; // Adjust path
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { triggerOnboardingWorkflow } from '../services/n8nService'; // Adjust path
-import { ConvexUserId } from '../types';
+import { ConvexUserId, UserData } from '../../types'; // Adjusted path and import UserData
 import { logAuditEvent } from '../services/supabaseService'; // Adjust path
 
 
-export interface UserData { // Exporting for potential use elsewhere, e.g. if currentUser is passed as prop
-  _id: Id<"users">;
-  _creationTime: number;
-  email: string;
-  name?: string | undefined;
-  tokenIdentifier: string;
-  isOnboardingWorkflowTriggered?: boolean | undefined;
-  stripeCustomerId?: string | undefined;
-  stripePaymentStatus?: string | undefined;
-  lastStripeCheckoutSessionId?: string | undefined;
-  journeyStep_Payment_Completed?: boolean | undefined;
-}
+// Removed local UserData interface definition
 
 const UserInitializer = () => {
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth();
   const storeUserMutation = useMutation(api.auth.storeUser);
-  // Explicitly type currentUser based on the expected return type of your query and UserData interface
   const currentUser = useQuery(api.auth.getCurrentUser) as UserData | null;
   const updateUserMutation = useMutation(api.users.updateUser);
   const { t } = useTranslation();

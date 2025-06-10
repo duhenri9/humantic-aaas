@@ -210,7 +210,8 @@
     "statusActive": "Ativo",
     "statusValidating": "Em validação",
     "statusPaused": "Pausado",
-    "toggleNavigation": "Alternar navegação"
+    "toggleNavigation": "Alternar navegação",
+    "updateContextButtonShort": "Contexto"
   },
   "clientDashboardPages": {
     "overviewTitle": "Visão Geral do Painel do Cliente",
@@ -219,5 +220,42 @@
     "agentSettingsTitle": "Configurações do Agente",
     "documentsTitle": "Contratos e Propostas",
     "supportTitle": "Central de Suporte"
+  },
+  "agentSettingsPage": {
+    "generalTitle": "Configurações Gerais do Agente",
+    "generalPlaceholder": "Configurações para o nome do agente (se editável aqui), horário de funcionamento e outras configurações gerais estarão disponíveis.",
+    "channelTitle": "Configurações de Canal",
+    "channelPlaceholder": "Espaço para configurações específicas de canais como WhatsApp, Webchat, etc. (ex: chaves de API, mensagens de boas-vindas por canal).",
+    "notificationsTitle": "Preferências de Notificação",
+    "notificationsPlaceholder": "Configure suas preferências para receber notificações sobre atividade do agente, resumos de performance ou alertas críticos.",
+    "integrationsTitle": "Configurações de Integração",
+    "integrationsPlaceholder": "Gerencie conexões e configurações para ferramentas ou serviços de terceiros integrados ao seu agente.",
+    "billingTitle": "Assinatura e Faturamento",
+    "billingPlaceholder": "Veja seu plano atual, gerencie detalhes de faturamento ou acesse o histórico de pagamentos. (Pode redirecionar para uma seção/página de faturamento dedicada)."
+  },
+  "metricsPage": {
+    "kpiSummaryTitle": "Indicadores Chave de Performance (KPIs)",
+    "kpiTotalInteractions": "Total de Interações:",
+    "kpiAvgResponseTime": "Tempo Médio de Resposta:",
+    "kpiPositiveFeedback": "Taxa de Feedback Positivo:",
+    "kpiPlaceholderValue": "[Dados N/D]",
+    "performanceChartTitle": "Performance ao Longo do Tempo",
+    "performanceChartPlaceholder": "Um gráfico de linha visualizando tendências de performance do agente (ex: interações, score de feedback) ao longo de períodos selecionados será exibido aqui. (Integração com Recharts planejada).",
+    "tagsBreakdownTitle": "Interações por Tag/Categoria",
+    "tagsBreakdownPlaceholder": "Uma visualização detalhada das interações baseada em tags ou categorias (ex: 'agendamento', 'boas-vindas', 'conversão') será mostrada aqui.",
+    "dataExportTitle": "Exportação de Dados",
+    "dataExportPlaceholder": "Opções para exportar dados de métricas em formatos como CSV estarão disponíveis aqui."
+  },
+  "myAgentPage": {
+    "agentNameTitle": "Nome do Agente",
+    "agentNamePlaceholder": "[Nome Dinâmico do Agente Aparecerá Aqui]",
+    "agentStatusTitle": "Status Atual",
+    "agentStatusPlaceholder": "[Status Dinâmico do Agente Aparecerá Aqui (ex: Ativo, Pausado)]",
+    "behaviorTitle": "Comportamento e Personalidade",
+    "behaviorPlaceholder": "Um resumo do tom configurado do agente, habilidades chave e traços de personalidade será exibido aqui (somente visualização).",
+    "contextEditingTitle": "Atualizar Contexto e Conhecimento do Agente",
+    "contextEditingPlaceholder": "Um formulário ou interface para atualizar o conhecimento contextual do agente, FAQs e outros dados específicos estará disponível aqui. É onde a funcionalidade 'Atualizar Contexto' será implementada.",
+    "revisionHistoryTitle": "Histórico de Revisões",
+    "revisionHistoryPlaceholder": "Um registro das alterações feitas no contexto ou configuração do agente será listado aqui."
   }
 }

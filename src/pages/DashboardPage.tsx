@@ -6,7 +6,7 @@ import FileList from '../components/FileList';
 import ClientJourneyStepper from '../components/ClientJourneyStepper';
 import { useConvexAuth, useQuery } from 'convex/react'; // Ensure useQuery is imported
 import { api } from '../../convex/_generated/api'; // Import full api object
-import type { UserData } from '../components/UserInitializer'; // Or your defined UserData type
+import type { UserData } from '../types'; // Changed path to import from ../types
 import { Link } from 'react-router-dom';
 import { BarChart3, UserCheck, TrendingUp, Settings2, LayoutGrid, CheckSquare, MessageCircleWarning, ExternalLink, Loader2, HardDrive } from 'lucide-react'; // Added HardDrive
 
